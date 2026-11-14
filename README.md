@@ -1,11 +1,36 @@
-# Research code, benchmark and arena (Stages 1–2)
+# Human Strategic Play
 
-Everything technical for Stages 1 and 2 of the build plan: data, the baseline ladder, our hybrid
-model, the evaluation protocol, the open benchmark and leaderboard site, and the public arena. The
-to-do lists are `TASK.md` (this folder, Stage 1) and `../stage2/TASK.md` (Stage 2).
+**Can we predict how real people act when the outcome depends on what others do?** This repository
+holds an open benchmark, a family of models, a confirmatory study fixed in advance, and a paper.
+It is the research behind [Polymetis](https://windtunnel-5bja.onrender.com), which predicts how
+buyers, sellers and bidders respond to prices, fees and auction rules.
 
-**Headline (exploratory, games2p2k).** Lower NLL is better; differences are paired over the same
-test problems, with bootstrap 95% CIs.
+![Predicting what real people choose](docs/img/llms_vs_theory.png)
+
+## Findings
+
+1. **AI role-play predicts people worse than a 1990s theory.** Asked zero-shot to predict how
+   people would choose in 200 held-out two-player games, all three models we tested
+   (gpt-oss-120b, Gemini 3.5 Flash Lite, Nemotron 3 Ultra) were significantly worse than quantal
+   level-k, a behavioural model from the 1990s (gaps of 0.06–0.08 nats per choice; every 95%
+   interval excludes zero). Others report that language models over-reason in strategic settings,
+   while most people think only one step ahead.
+2. **A hybrid of theory and a neural network predicts best within one dataset.** On games2p2k
+   (2,416 decision problems, ~93,000 incentivised choices) a quantal level-k core whose parameters
+   a network sets per game, plus a penalised residual, beats every baseline on held-out *strategic
+   families*, including an ElementaryNet-style model and a black-box network.
+3. **Across studies, structure transfers best.** In a confirmatory test whose protocol was frozen
+   and timestamped with OpenTimestamps before scoring ([protocol](docs/evaluation_protocol.md),
+   [proof](docs/evaluation_protocol.md.ots)), models trained only on games2p2k were applied to 384
+   decision problems from 12 other lab studies. The hybrid beat the neural ElementaryNet-style model
+   (by 0.037 nats, 95% CI 0.029–0.046), but plain quantal level-k beat the hybrid (by 0.011). The
+   more structural the model, the better it carried over to new populations and game sizes.
+   [Full result and notes](docs/h1_results.md).
+
+Paper: [`paper/main.pdf`](paper/main.pdf). All numbers are regenerated from `results/` by
+`scripts/make_paper_assets.py`.
+
+### Within-dataset results (exploratory)
 
 | Model | Held-out games: NLL | Held-out strategic family: NLL |
 | --- | --- | --- |
@@ -15,22 +40,9 @@ test problems, with bootstrap 95% CIs.
 | **Hybrid v0 (structural + residual)** | **0.5123** | **0.5160** |
 | Hybrid v1 (any game size) | 0.5132 | 0.5161 |
 
-- On held-out games, the hybrid ties the black-box MLP and beats the ElementaryNet-style model
-  (by 0.0033 nats; CI 0.0024–0.0042) and classic level-k (by 0.030).
-- On held-out strategic families, the Gate 1 test, the hybrid beats all of them: ElementaryNet-style
-  by 0.0025 (CI 0.0014–0.0036), the MLP by 0.0043 (CI 0.0032–0.0053), level-k by 0.027.
-- The edge over ElementaryNet-style is small, so confirming it needs about 1,000–1,500 new decision
-  problems (power table in the protocol).
-
-Full tables: [`results/RESULTS.md`](results/RESULTS.md). These results are exploratory: we built the
-models while looking at this data.
-
-**Confirmatory transfer test (H1, protocol frozen and timestamped in advance): holds partly.**
-Trained only on games2p2k and applied unchanged to 384 decision problems from 12 other published
-studies, hybrid v1 beat the ElementaryNet-style model by 0.037 nats (95% CI 0.029–0.046) but quantal
-level-k beat the hybrid by 0.011 (CI 0.002–0.020). Across studies, the more structural the model,
-the better it transferred. Details and post-freeze notes: [`docs/h1_results.md`](docs/h1_results.md);
-protocol: [`docs/evaluation_protocol.md`](docs/evaluation_protocol.md).
+Lower NLL is better; differences are paired over the same test problems with bootstrap 95% CIs
+([full tables](results/RESULTS.md)). These are exploratory: the models were built while looking at
+this data, which is why the confirmatory test above was run on different studies.
 
 ## Quick start
 
