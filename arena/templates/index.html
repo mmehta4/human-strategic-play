@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>{{ t("index.title") }}</h1>
+<p class="lead">{{ t("index.lead", n=n_games) }}</p>
+<div class="card">
+  {% if returning %}
+    <p>{{ t("index.welcome_back") }}</p>
+    <form method="post" action="{{ url_for('next_set') }}" class="inline">
+      <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+      <button class="btn" type="submit">{{ t("index.next_set") }}</button>
+    </form>
+    <a class="btn secondary" href="{{ url_for('profile') }}">{{ t("index.see_profile") }}</a>
+  {% else %}
+    <p><strong>{{ t("index.card1") }}</strong></p>
+    <p class="muted">{{ t("index.card2") }}</p>
+    <a class="btn" href="{{ url_for('play', idx=0) if in_progress else url_for('consent') }}">{{ t("index.start") }}</a>
+  {% endif %}
+</div>
+<p class="muted">{{ t("index.players", n=n_players) }}</p>
+{% endblock %}

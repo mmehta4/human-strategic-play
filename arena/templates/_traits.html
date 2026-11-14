@@ -1,0 +1,10 @@
+<div class="card">
+{% for it in p["items"] %}
+  <div class="trait">
+    <span class="name">{{ it.name }}</span>
+    <span class="value">{{ it.value }}{% if it.compare %}<span class="muted"> · {{ it.compare }}</span>{% endif %}</span>
+    {% if it.bar is not none %}<div class="bar"><span style="left: {{ it.bar }}%"></span></div>{% endif %}
+    <span class="why">{{ it.why }}</span>
+  </div>
+{% endfor %}
+</div>

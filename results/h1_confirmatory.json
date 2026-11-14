@@ -1,0 +1,238 @@
+{
+  "protocol": "docs/evaluation_protocol.md v3",
+  "n_problems": 384,
+  "summary": {
+    "Uniform": {
+      "nll": 1.088257011317477,
+      "nll_se": 0.0191195798555439,
+      "completeness": 0.0,
+      "accuracy": 0.3854166666666667,
+      "n_problems": 384
+    },
+    "Quantal level-k": {
+      "nll": 0.845004626270026,
+      "nll_se": 0.020406130052051996,
+      "completeness": 0.7323862327644343,
+      "accuracy": 0.8229166666666666,
+      "n_problems": 384
+    },
+    "Cognitive hierarchy": {
+      "nll": 0.8474606914276507,
+      "nll_se": 0.020174999297696783,
+      "completeness": 0.7249914920803263,
+      "accuracy": 0.8125,
+      "n_problems": 384
+    },
+    "ElementaryNet-style QLk (reimplementation)": {
+      "nll": 0.8931285626260008,
+      "nll_se": 0.02026683701469365,
+      "completeness": 0.5874942990361277,
+      "accuracy": 0.7604166666666666,
+      "n_problems": 384
+    },
+    "ElementaryNet-style QCH (closer reimplementation)": {
+      "nll": 0.8849570437935559,
+      "nll_se": 0.02084196967526371,
+      "completeness": 0.6120971735053361,
+      "accuracy": 0.7786458333333334,
+      "n_problems": 384
+    },
+    "Hybrid v1 (any size, structural + residual)": {
+      "nll": 0.8558636189759278,
+      "nll_se": 0.02059215935026873,
+      "completeness": 0.6996918903926608,
+      "accuracy": 0.8020833333333334,
+      "n_problems": 384
+    }
+  },
+  "primary": {
+    "ElementaryNet-style QLk (reimplementation)": {
+      "mean_diff": -0.03726494365007279,
+      "ci95": [
+        -0.04584125459204316,
+        -0.02900595364571477
+      ],
+      "p_one_sided": 0.0
+    },
+    "Quantal level-k": {
+      "mean_diff": 0.010858992705901847,
+      "ci95": [
+        0.0024983046897336827,
+        0.019606135625724812
+      ],
+      "p_one_sided": 0.9946
+    }
+  },
+  "holm_significant": {
+    "ElementaryNet-style QLk (reimplementation)": true,
+    "Quantal level-k": false
+  },
+  "verdict": "HOLDS PARTLY",
+  "secondary": {
+    "comparisons": {
+      "ElementaryNet-style QCH (closer reimplementation)": {
+        "mean_diff": -0.029093424817628066,
+        "ci95": [
+          -0.036863933807423095,
+          -0.021979906088870835
+        ],
+        "p_one_sided": 0.0
+      },
+      "Cognitive hierarchy": {
+        "mean_diff": 0.008402927548277156,
+        "ci95": [
+          -0.00019805356316168028,
+          0.017613372596320443
+        ],
+        "p_one_sided": 0.9716
+      }
+    },
+    "nll_weighted_by_choices": {
+      "Uniform": 1.0642419115509556,
+      "Quantal level-k": 0.8628521509214242,
+      "Cognitive hierarchy": 0.8640432224841593,
+      "ElementaryNet-style QLk (reimplementation)": 0.8977520493165939,
+      "ElementaryNet-style QCH (closer reimplementation)": 0.8945974405874206,
+      "Hybrid v1 (any size, structural + residual)": 0.8667493881514429
+    },
+    "without_large_games": {
+      "nll": {
+        "Uniform": 1.0528351671746607,
+        "Quantal level-k": 0.811635645993231,
+        "Cognitive hierarchy": 0.8145447676900185,
+        "ElementaryNet-style QLk (reimplementation)": 0.8594153326479906,
+        "ElementaryNet-style QCH (closer reimplementation)": 0.8505158597635317,
+        "Hybrid v1 (any size, structural + residual)": 0.8228522698731587
+      },
+      "tests": {
+        "ElementaryNet-style QLk (reimplementation)": {
+          "mean_diff": -0.03656306277483177,
+          "ci95": [
+            -0.04490833593601686,
+            -0.02839731416663259
+          ],
+          "p_one_sided": 0.0
+        },
+        "Quantal level-k": {
+          "mean_diff": 0.011216623879927631,
+          "ci95": [
+            0.0030459936299674535,
+            0.019744867164375186
+          ],
+          "p_one_sided": 0.9958
+        }
+      },
+      "n_problems": 380
+    },
+    "by_study": {
+      "cgcb98": {
+        "n_problems": 36,
+        "Uniform": 0.8668103932937749,
+        "Quantal level-k": 0.7055599260228036,
+        "Cognitive hierarchy": 0.6994242456157473,
+        "ElementaryNet-style QLk (reimplementation)": 0.8461155683872394,
+        "ElementaryNet-style QCH (closer reimplementation)": 0.8332058593546605,
+        "Hybrid v1 (any size, structural + residual)": 0.8305021794236095
+      },
+      "cgw08": {
+        "n_problems": 28,
+        "Uniform": 1.0986122886681098,
+        "Quantal level-k": 0.9478684201439336,
+        "Cognitive hierarchy": 0.9512482659995456,
+        "ElementaryNet-style QLk (reimplementation)": 1.002946560645712,
+        "ElementaryNet-style QCH (closer reimplementation)": 0.987687307012122,
+        "Hybrid v1 (any size, structural + residual)": 0.9522055276967256
+      },
+      "chw23": {
+        "n_problems": 19,
+        "Uniform": 1.0986122886681102,
+        "Quantal level-k": 1.0295288622675904,
+        "Cognitive hierarchy": 1.026706449411619,
+        "ElementaryNet-style QLk (reimplementation)": 1.0413054425130255,
+        "ElementaryNet-style QCH (closer reimplementation)": 1.01664715641734,
+        "Hybrid v1 (any size, structural + residual)": 1.024927198555143
+      },
+      "cvh03": {
+        "n_problems": 16,
+        "Uniform": 0.6931471805599452,
+        "Quantal level-k": 0.5887647962093112,
+        "Cognitive hierarchy": 0.5882761165519295,
+        "ElementaryNet-style QLk (reimplementation)": 0.5684444938537563,
+        "ElementaryNet-style QCH (closer reimplementation)": 0.5648371825202776,
+        "Hybrid v1 (any size, structural + residual)": 0.5637455950951851
+      },
+      "fl19": {
+        "n_problems": 200,
+        "Uniform": 1.0986122886681096,
+        "Quantal level-k": 0.7879381685409723,
+        "Cognitive hierarchy": 0.7940268616138184,
+        "ElementaryNet-style QLk (reimplementation)": 0.8266612091757076,
+        "ElementaryNet-style QCH (closer reimplementation)": 0.8136524018065026,
+        "Hybrid v1 (any size, structural + residual)": 0.7831888996787236
+      },
+      "gh01": {
+        "n_problems": 12,
+        "Uniform": 2.0043044537149677,
+        "Quantal level-k": 1.7759762444660534,
+        "Cognitive hierarchy": 1.7600464160176408,
+        "ElementaryNet-style QLk (reimplementation)": 1.8468334272130242,
+        "ElementaryNet-style QCH (closer reimplementation)": 1.8543815418701044,
+        "Hybrid v1 (any size, structural + residual)": 1.7967087219904718
+      },
+      "hs07": {
+        "n_problems": 14,
+        "Uniform": 1.0986122886681096,
+        "Quantal level-k": 0.6933864937339401,
+        "Cognitive hierarchy": 0.6960166965455422,
+        "ElementaryNet-style QLk (reimplementation)": 0.7679640576256254,
+        "ElementaryNet-style QCH (closer reimplementation)": 0.8157159071069493,
+        "Hybrid v1 (any size, structural + residual)": 0.6965324330274976
+      },
+      "hsw01": {
+        "n_problems": 4,
+        "Uniform": 1.0986122886681098,
+        "Quantal level-k": 1.0368260992270106,
+        "Cognitive hierarchy": 1.038730905587606,
+        "ElementaryNet-style QLk (reimplementation)": 1.0295156830509056,
+        "ElementaryNet-style QCH (closer reimplementation)": 1.0256629628337632,
+        "Hybrid v1 (any size, structural + residual)": 1.0414699737554658
+      },
+      "rpc08": {
+        "n_problems": 19,
+        "Uniform": 1.0979584718260806,
+        "Quantal level-k": 0.9812822711885758,
+        "Cognitive hierarchy": 0.9826231428579174,
+        "ElementaryNet-style QLk (reimplementation)": 0.9905222494565741,
+        "ElementaryNet-style QCH (closer reimplementation)": 0.985217252614507,
+        "Hybrid v1 (any size, structural + residual)": 0.9648189411764889
+      },
+      "sh08": {
+        "n_problems": 14,
+        "Uniform": 1.0986122886681096,
+        "Quantal level-k": 0.8121899155172205,
+        "Cognitive hierarchy": 0.8160329755011004,
+        "ElementaryNet-style QLk (reimplementation)": 0.8489528232832715,
+        "ElementaryNet-style QCH (closer reimplementation)": 0.8504905825143305,
+        "Hybrid v1 (any size, structural + residual)": 0.80850403593014
+      },
+      "sw94": {
+        "n_problems": 10,
+        "Uniform": 1.0986122886681096,
+        "Quantal level-k": 0.858151087534251,
+        "Cognitive hierarchy": 0.8590799274067826,
+        "ElementaryNet-style QLk (reimplementation)": 1.0109399040636107,
+        "ElementaryNet-style QCH (closer reimplementation)": 1.0163316912437086,
+        "Hybrid v1 (any size, structural + residual)": 0.9575212010649927
+      },
+      "sw95": {
+        "n_problems": 12,
+        "Uniform": 1.0986122886681093,
+        "Quantal level-k": 1.0174517890224082,
+        "Cognitive hierarchy": 1.0150544566720845,
+        "ElementaryNet-style QLk (reimplementation)": 1.0300270643349252,
+        "ElementaryNet-style QCH (closer reimplementation)": 1.0436760091230768,
+        "Hybrid v1 (any size, structural + residual)": 1.021400267072081
+      }
+    }
+  }
+}

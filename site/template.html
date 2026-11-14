@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{name}}</title>
+<meta name="description" content="An open benchmark for predicting how real people play strategic games. Score your model, LLM or theory against human choices.">
+<style>
+:root { --bg:#faf9f6; --surface:#fff; --ink:#1d1d1b; --muted:#6b6a66; --line:#e4e2dc; --accent:#2b59c3; --soft:#eef2fb; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg:#161615; --surface:#1f1f1d; --ink:#ecebe7; --muted:#a3a29c; --line:#34332f; --accent:#7aa2ff; --soft:#1e2638; }
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 40px 16px 80px; }
+h1 { font-size: 34px; line-height:1.15; margin: 0 0 12px; letter-spacing:-0.01em; }
+h2 { font-size: 22px; margin: 40px 0 10px; }
+p.lead { font-size: 19px; color: var(--muted); margin-top: 0; max-width: 680px; }
+a { color: var(--accent); }
+.links a { margin-right: 18px; font-weight: 600; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+table { width:100%; border-collapse: collapse; font-size: 15px; min-width: 560px; }
+th, td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+th { color: var(--muted); font-weight: 600; font-size: 13px; }
+tr:last-child td { border-bottom: 0; }
+tr.ours td { background: var(--soft); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sub { color: var(--muted); font-size: 13px; }
+.tag { font-size: 11px; border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; margin-left: 6px; color: var(--muted); }
+code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14px; }
+pre { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; overflow-x: auto; }
+.muted { color: var(--muted); font-size: 15px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>{{name}}</h1>
+  <p class="lead">How well can a model predict what real people actually choose in strategic games? Not what a rational agent would do, and not what an LLM thinks people do: the measured choices of thousands of humans.</p>
+  <p class="links"><a href="#leaderboard">Leaderboard</a><a href="#submit">Submit a model</a><a href="{{repo_url}}">Code and data</a><a href="{{arena_url}}">Play the games yourself</a><a href="{{paper_url}}">Paper</a></p>
+
+  <h2 id="leaderboard">Leaderboard</h2>
+  <p class="muted">Ranked by mean negative log-likelihood per choice on <strong>held-out strategic families</strong>: the model never saw any game of that type in training. Lower is better. Completeness is the share of the gap between guessing at random and the best achievable score that a model closes. Benchmark v0: 2,416 decision problems from 1,208 two-player games, about 93,000 human choices. Updated {{updated}}, {{n_models}} models.</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th class="num">#</th><th>Model</th><th class="num">NLL, held-out family</th><th class="num">Completeness</th><th class="num">NLL, held-out games</th></tr></thead>
+    <tbody>
+{{rows}}
+    </tbody>
+  </table>
+  </div>
+  <p class="muted">Baseline numbers are exploratory: they come from the same public data the models were developed on. Version 1 adds a hidden test set that nobody, including us, trains on.</p>
+
+  <h2>The task</h2>
+  <p>Each problem is a two-player game seen from one player's side: both payoff matrices, plus a plain-language description of the game. Predict the share of people who choose each action. Scored by cross-entropy, a strictly proper scoring rule, so the best strategy is to report your honest prediction.</p>
+
+  <h2 id="submit">Submit a model</h2>
+  <ol>
+    <li>Get the data and splits from the repository: <code>benchmark/data/</code>.</li>
+    <li>For every problem, predict under each protocol using only the allowed training data (see <code>benchmark/data/splits.json</code>).</li>
+    <li>Score it yourself: <code>python benchmark/score.py my_predictions.csv</code></li>
+    <li>Open a pull request adding <code>benchmark/submissions/your-model.json</code> (created with <code>--save</code>), plus a link to your code or paper. LLM submissions must include the exact prompt.</li>
+  </ol>
+<pre>problem_id,split,p0,p1
+g2p2k-1,fold-3,0.31,0.69
+g2p2k-1,holdout-self_dominant,0.28,0.72</pre>
+
+  <h2>Data credit</h2>
+  <p class="muted">Benchmark v0 is built on games2p2k by Jian-Qiao Zhu, Joshua C. Peterson, Benjamin Enke and Thomas L. Griffiths (CC-BY 4.0). Maintained by {{org}}. Contact: {{contact}}.</p>
+</main>
+</body>
+</html>

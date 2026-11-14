@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="{{ current_lang() }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ t("site.name") }}{% endblock %}</title>
+  {% block meta %}{% endblock %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main>
+  <header class="site">
+    <a href="{{ url_for('index') }}">{{ t("site.name") }}</a>
+    <nav>
+      {% for code in langs %}{% if code != current_lang() %}<a href="{{ url_for('set_lang', code=code) }}" lang="{{ code }}">{{ strings[code]["lang.name"] }}</a>{% endif %}{% endfor %}
+      <a href="{{ url_for('privacy') }}">{{ t("nav.privacy") }}</a>
+      <a href="{{ url_for('withdraw') }}">{{ t("nav.delete") }}</a>
+    </nav>
+  </header>
+  {% block body %}{% endblock %}
+</main>
+{% block scripts %}{% endblock %}
+</body>
+</html>

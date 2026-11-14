@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ t("share.title") }} · {{ t("site.name") }}{% endblock %}
+{% block meta %}
+  <meta property="og:title" content="{{ t('share.title') }} · {{ t('site.name') }}">
+  <meta property="og:description" content="{{ t('share.lead') }}">
+  <meta property="og:image" content="{{ card_url }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="{{ page_url }}">
+  <meta name="twitter:card" content="summary_large_image">
+{% endblock %}
+{% block body %}
+<h1>{{ t("share.title") }}</h1>
+<p class="lead">{{ t("share.lead") }}</p>
+{% include "_traits.html" %}
+<p><a class="btn" href="{{ url_for('index') }}">{{ t("share.cta") }}</a></p>
+{% endblock %}

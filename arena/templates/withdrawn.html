@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>{{ t("withdrawn.title") }}</h1>
+<p>{{ t("withdrawn.body") }}</p>
+<a class="btn secondary" href="{{ url_for('index') }}">{{ t("withdrawn.back") }}</a>
+{% endblock %}

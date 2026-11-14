@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Metrics · {{ t("site.name") }}{% endblock %}
+{% block body %}
+<h1>Gate 2 metrics</h1>
+<p class="muted">Admin only. Flagged choices (too fast, or bot honeypot) are excluded.</p>
+<table>
+  <tr><th>Metric</th><th>Now</th><th>Gate 2 target</th></tr>
+  <tr><td>Players</td><td class="num">{{ m.players }}</td><td class="num">{{ "{:,}".format(m.gate.players) }}</td></tr>
+  <tr><td>Decisions</td><td class="num">{{ m.decisions }}</td><td class="num">{{ "{:,}".format(m.gate.decisions) }}</td></tr>
+  <tr><td>Came back within 30 days (players who started 30+ days ago)</td>
+      <td class="num">{% if m.return_rate_30d is none %}not enough data{% else %}{{ (100 * m.return_rate_30d)|round(1) }}% of {{ m.mature_cohort }}{% endif %}</td>
+      <td class="num">{{ (100 * m.gate.return_rate)|int }}%</td></tr>
+  <tr><td>Players who have returned so far (any cohort)</td><td class="num">{{ m.returned_so_far }}</td><td></td></tr>
+  <tr><td>Choices flagged as likely automated</td><td class="num">{{ (100 * m.flagged_share)|round(1) }}%</td><td></td></tr>
+</table>
+<h2>Languages</h2>
+<table>{% for k, v in m.languages.items() %}<tr><td>{{ k }}</td><td class="num">{{ v }}</td></tr>{% endfor %}</table>
+<h2>Top countries</h2>
+<table>{% for k, v in m.countries %}<tr><td>{{ k }}</td><td class="num">{{ v }}</td></tr>{% endfor %}</table>
+{% endblock %}

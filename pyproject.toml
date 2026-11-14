@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hsb"
+version = "0.2.0"
+description = "Data, baselines and an open benchmark for predicting how people play strategic games"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = ["numpy>=2.0", "scipy>=1.13", "pandas>=2.2"]
+
+[project.optional-dependencies]
+neural = ["torch>=2.3"]
+llm = ["anthropic>=1.0"]
+arena = ["flask>=3.0", "pillow>=10.1", "gunicorn>=22.0"]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+include = ["hsb*", "arena*"]
+
+[tool.setuptools.package-data]
+arena = ["i18n/*.json", "templates/*.html", "static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

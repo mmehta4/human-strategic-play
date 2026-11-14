@@ -1,0 +1,4 @@
+# Just what the arena web app needs in production (no torch, no research code).
+flask>=3.0
+pillow>=10.1
+gunicorn>=22.0

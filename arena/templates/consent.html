@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ t("consent.title") }} · {{ t("site.name") }}{% endblock %}
+{% block body %}
+<h1>{{ t("consent.title") }}</h1>
+<div class="card">
+  <p>{{ t("consent.collect") }}</p>
+  <p>{{ t("consent.dont") }}</p>
+  <p>{{ t("consent.use") }}</p>
+  <p>{{ t("consent.rights") }} <a href="{{ url_for('privacy') }}">{{ t("consent.privacy_link") }}</a></p>
+</div>
+<form method="post">
+  <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+  <label class="check"><input type="checkbox" name="adult" value="yes"> {{ t("consent.adult") }}</label>
+  <label class="check"><input type="checkbox" name="agree" value="yes"> {{ t("consent.agree") }}</label>
+  <h2>{{ t("consent.optional_h") }}</h2>
+  <p class="muted">{{ t("consent.optional_p") }}</p>
+  <div class="grid2">
+    <label>{{ t("consent.age") }}<br><select name="age_band"><option value="">{{ t("consent.prefer_not") }}</option>
+      <option>18-24</option><option>25-34</option><option>35-44</option><option>45-54</option><option>55-64</option><option>65+</option></select></label>
+    <label>{{ t("consent.country") }}<br><input type="text" name="country" maxlength="56" placeholder="{{ t('consent.country_ph') }}"></label>
+    <label>{{ t("consent.education") }}<br><select name="education"><option value="">{{ t("consent.prefer_not") }}</option>
+      <option value="school">{{ t("consent.edu_school") }}</option><option value="undergraduate">{{ t("consent.edu_ug") }}</option>
+      <option value="postgraduate">{{ t("consent.edu_pg") }}</option><option value="other">{{ t("consent.edu_other") }}</option></select></label>
+  </div>
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  <p><button class="btn" type="submit">{{ t("consent.submit") }}</button></p>
+</form>
+{% endblock %}

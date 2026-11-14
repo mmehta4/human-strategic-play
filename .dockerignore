@@ -1,0 +1,11 @@
+.venv
+data
+results
+benchmark
+tests
+scripts
+hsb
+docs
+outreach
+**/__pycache__
+arena/*.db*

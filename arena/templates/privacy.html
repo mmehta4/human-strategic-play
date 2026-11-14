@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ t("privacy.title") }} · {{ t("site.name") }}{% endblock %}
+{% block body %}
+<h1>{{ t("privacy.title") }}</h1>
+<p class="muted">{{ t("privacy.draft", v=version) }}</p>
+<h2>{{ t("privacy.who_h") }}</h2><p>{{ t("privacy.who") }}</p>
+<h2>{{ t("privacy.what_h") }}</h2>
+<ul><li>{{ t("privacy.what1") }}</li><li>{{ t("privacy.what2") }}</li><li>{{ t("privacy.what3") }}</li></ul>
+<p>{{ t("privacy.not") }}</p>
+<h2>{{ t("privacy.basis_h") }}</h2><p>{{ t("privacy.basis") }}</p>
+<h2>{{ t("privacy.share_h") }}</h2><p>{{ t("privacy.share") }}</p>
+<h2>{{ t("privacy.keep_h") }}</h2><p>{{ t("privacy.keep") }}</p>
+<h2>{{ t("privacy.age_h") }}</h2><p>{{ t("privacy.age") }}</p>
+<h2>{{ t("privacy.rights_h") }}</h2><p>{{ t("privacy.rights") }}</p>
+{% endblock %}

@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+arena/*.db
+results/llm_cache.jsonl
+results_run.log
+.env
+
+# private: never public
+outreach/
+TASK.md
+*.key
+API-KEYS*
+# third-party raw data: downloaded from OSF on first use, not redistributed here
+data/raw/
+.claude/

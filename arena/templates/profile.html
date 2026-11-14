@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}{{ t("profile.title") }} · {{ t("site.name") }}{% endblock %}
+{% block body %}
+<h1>{{ t("profile.title") }}</h1>
+<p class="lead">{{ t("profile.lead") if p.n_players >= 6 else t("profile.lead_few") }}</p>
+{% include "_traits.html" %}
+
+{% if p.changes %}
+<h2>{{ t("profile.changes_h") }}</h2>
+<p class="muted">{{ t("profile.changes_p") }}</p>
+<table>{% for c in p.changes %}<tr><td>{{ c.name }}</td><td class="num">{{ "%+g" % c.delta }}</td></tr>{% endfor %}</table>
+{% endif %}
+
+<h2>{{ t("profile.share_h") }}</h2>
+<p class="muted">{{ t("profile.share_p") }}</p>
+<div class="share-row">
+  <input type="text" readonly value="{{ share_url }}" id="share-url" aria-label="{{ t('profile.share_h') }}">
+  <button class="btn secondary" type="button" id="copy" data-done="{{ t('profile.copied') }}">{{ t("profile.copy") }}</button>
+</div>
+
+<div class="card">
+  <h2 class="tight">{{ t("profile.next_set_h") }}</h2>
+  <p class="muted">{{ t("profile.next_set_p") }}</p>
+  <form method="post" action="{{ url_for('next_set') }}">
+    <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+    <button class="btn" type="submit">{{ t("index.next_set") }}</button>
+  </form>
+</div>
+
+<h2>{{ t("profile.results_h") }}</h2>
+<p class="muted">{{ t("profile.results_p") }}</p>
+<table>
+  <tr><th>{{ t("profile.game") }}</th><th>{{ t("profile.points") }}</th></tr>
+  {% for gm in games %}<tr><td>{{ t("game." ~ gm.id ~ ".title") }}</td><td class="num">{{ p.results.get(gm.id, t("profile.pending")) }}</td></tr>{% endfor %}
+</table>
+
+<p class="muted" style="margin-top: 28px">{{ t("profile.anon_id", id=pid[:8]) }} <a href="{{ url_for('withdraw') }}">{{ t("nav.delete") }}</a></p>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='share.js') }}"></script>{% endblock %}

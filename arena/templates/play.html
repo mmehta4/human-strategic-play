@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} · {{ t("site.name") }}{% endblock %}
+{% block body %}
+<div class="progress"><span style="width: {{ (100 * idx / total) | round }}%"></span></div>
+<p class="muted">{{ t("play.game_of", i=idx + 1, n=total) }}</p>
+<h1>{{ title }}</h1>
+{% if is_bonus %}<p class="muted">{{ t("play.bonus_note") }}</p>{% endif %}
+<form method="post" id="f">
+  <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+  <input type="hidden" name="rt_ms" id="rt">
+  <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+  {% if kind == "choice" %}
+    <div class="card">
+      <p>{{ text[0] }}</p>
+      <ul class="payoffs">{% for line in text[1:] %}<li>{{ line }}</li>{% endfor %}</ul>
+    </div>
+    <div class="options">
+      {% for o in options %}<button class="btn" type="submit" name="choice" value="{{ o }}">{{ t("play.choose", o=o) }}</button>{% endfor %}
+    </div>
+  {% elif kind == "gambles" %}
+    <div class="card">
+      <p>{{ t("game.gambles.player") }}</p>
+      {% for gain in gains %}
+      <div class="gamble"><span>{{ t("play.gamble_row", g=gain) }}</span>
+        <span><label><input type="radio" name="g{{ loop.index0 }}" value="play" required> {{ t("play.play") }}</label>
+              <label><input type="radio" name="g{{ loop.index0 }}" value="pass"> {{ t("play.pass") }}</label></span></div>
+      {% endfor %}
+    </div>
+    <button class="btn" type="submit">{{ t("play.continue") }}</button>
+  {% else %}
+    <div class="card"><p>{{ text[0] }}</p></div>
+    <label class="number-row">
+      {% if game.step > 1 %}{{ t("play.answer_step", min=game.min|int, max=game.max|int, step=game.step|int) }}{% else %}{{ t("play.answer", min=game.min|int, max=game.max|int) }}{% endif %}
+      <input type="number" name="choice" required inputmode="numeric" min="{{ game.min|int }}" max="{{ game.max|int }}" step="{{ game.step|int }}" autocomplete="off">
+    </label>
+    <button class="btn" type="submit">{{ t("play.lock_in") }}</button>
+  {% endif %}
+</form>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='play.js') }}"></script>{% endblock %}

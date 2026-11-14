@@ -1,0 +1,12 @@
+{
+  "version": "v0",
+  "n_problems": 2416,
+  "n_games": 1208,
+  "source": "games2p2k (Zhu, Peterson, Enke & Griffiths), https://osf.io/xrvaw/, CC-BY 4.0",
+  "source_sha256": "a385e2e812ce5aaf3a613b4d7a45d25a73d8dc3aeb099629bf43d38df01f21d0",
+  "files": {
+    "labels.csv": "f57c2f4b0e201f785793e3f221eabc601f9c5f5a6afb122bd2c97c8bd1eeb149",
+    "problems.jsonl": "57187ecb9254682404b813f7e42fb63233c2c4f7738f712ee128974c27be7fda",
+    "splits.json": "a6e607ee29a56a146acad15292a8d12b93b4b936fffac48f17a68f9d110f1618"
+  }
+}

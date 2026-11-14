@@ -1,0 +1,50 @@
+{
+  "both_dominant": {
+    "n": 240,
+    "level_shares": {
+      "L0": 0.268,
+      "L1": 0.639,
+      "L2": 0.067,
+      "L3": 0.026
+    },
+    "mean_level": 0.85,
+    "precision_own": 2.572,
+    "precision_belief": 0.63
+  },
+  "coordination": {
+    "n": 746,
+    "level_shares": {
+      "L0": 0.393,
+      "L1": 0.453,
+      "L2": 0.126,
+      "L3": 0.028
+    },
+    "mean_level": 0.79,
+    "precision_own": 1.255,
+    "precision_belief": 0.595
+  },
+  "other_dominant": {
+    "n": 715,
+    "level_shares": {
+      "L0": 0.346,
+      "L1": 0.449,
+      "L2": 0.17,
+      "L3": 0.035
+    },
+    "mean_level": 0.89,
+    "precision_own": 1.296,
+    "precision_belief": 0.592
+  },
+  "self_dominant": {
+    "n": 715,
+    "level_shares": {
+      "L0": 0.286,
+      "L1": 0.647,
+      "L2": 0.046,
+      "L3": 0.021
+    },
+    "mean_level": 0.8,
+    "precision_own": 2.281,
+    "precision_belief": 0.56
+  }
+}
