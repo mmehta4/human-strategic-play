@@ -2,7 +2,7 @@
 
 **Can we predict how real people act when the outcome depends on what others do?** This repository
 holds an open benchmark, a family of models, a confirmatory study fixed in advance, and a paper.
-It is the research behind [Polymetis](https://windtunnel-5bja.onrender.com), which predicts how
+It is the research behind [Polymetis](https://polymetis-pjkz.onrender.com), which predicts how
 buyers, sellers and bidders respond to prices, fees and auction rules.
 
 ![Predicting what real people choose](docs/img/llms_vs_theory.png)
